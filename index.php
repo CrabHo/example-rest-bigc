@@ -29,6 +29,55 @@ $app->delete('/profile/{id}', function (Request $request, Response $response) {
     return $res;
 });
 
+$app->get('/profile/{uid}/edu/{eduid}', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\edu\Education($request, $response);
+    $res = $tmp->doGet();
+    return $res;
+});
+
+$app->post('/profile/{uid}/edu', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\edu\Education($request, $response);
+    $res = $tmp->doPost();
+    return $res;
+});
+
+$app->delete('/profile/{uid}/edu/{eduid}', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\edu\Education($request, $response);
+    $res = $tmp->doDelete();
+    return $res;
+});
+
+$app->put('/profile/{uid}/edu/{eduid}', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\edu\Education($request, $response);
+    $res = $tmp->doPut();
+    return $res;
+});
+
+$app->get('/profile/{uid}/exp/{expid}', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\exp\Experience($request, $response);
+    $res = $tmp->doGet();
+    return $res;
+});
+
+$app->post('/profile/{uid}/exp', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\exp\Experience($request, $response);
+    $res = $tmp->doPost();
+    return $res;
+});
+
+$app->delete('/profile/{uid}/exp/{expid}', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\exp\Experience($request, $response);
+    $res = $tmp->doDelete();
+    return $res;
+});
+
+$app->put('/profile/{uid}/exp/{expid}', function (Request $request, Response $response) {
+    $tmp = new \bigc\rest\profile\exp\Experience($request, $response);
+    $res = $tmp->doPut();
+    return $res;
+});
+
+
 $c = $app->getContainer();
 $c['errorHandler'] = function ($c) {
     return function ($request, $response, $exception) use ($c) {

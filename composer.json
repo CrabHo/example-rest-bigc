@@ -4,6 +4,10 @@
         {
             "type": "git",
             "url": "https://github.com/CrabHo/example-lib-profile.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/CrabHo/example-lib-resume.git"
         }
     ],
     "require": {
@@ -11,7 +15,8 @@
         "respect/validation" : "1.0.3",
         "slim/slim": "~3.0",
         "monolog/monolog": "^1.17",
-        "bigc/profile": "dev-master"
+        "bigc/profile": "dev-master",
+        "bigc/resume": "dev-master"
     },
     "autoload": {
         "psr-4" : {
