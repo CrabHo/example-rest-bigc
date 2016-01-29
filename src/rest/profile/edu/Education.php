@@ -16,6 +16,14 @@ class Education extends BaseRest
         $this->modelEdu = new EduModel;
     }
 
+    public function doGets()
+    {
+        $res = $this->modelEdu->getData(
+            $this->request->getAttribute('uid')
+        );
+        return $this->doSend($res);
+    }
+
     public function doGet()
     {
         $res = $this->modelEdu->getData(

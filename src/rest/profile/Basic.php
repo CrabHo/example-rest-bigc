@@ -16,6 +16,12 @@ class Basic extends BaseRest
         $this->modelBasic = new BasicModel;
     }
 
+    public function doGets()
+    {
+        $res = $this->modelBasic->getBasicDatas();
+        return $this->doSend($res);
+    }
+
     public function doGet()
     {
         $res = $this->modelBasic->getBasicData(

@@ -16,6 +16,14 @@ class Experience extends BaseRest
         $this->modelExp = new ExpModel;
     }
 
+    public function doGets()
+    {
+        $res = $this->modelExp->getDatas(
+            $this->request->getAttribute('uid')
+        );
+        return $this->doSend($res);
+    }
+
     public function doGet()
     {
         $res = $this->modelExp->getData(
