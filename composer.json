@@ -3,6 +3,10 @@
     "repositories": [
         {
             "type": "git",
+            "url": "https://github.com/CrabHo/monolog-cascade.git"
+        },
+        {
+            "type": "git",
             "url": "https://github.com/CrabHo/example-lib-profile.git"
         },
         {
@@ -12,9 +16,8 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "respect/validation" : "1.0.3",
         "slim/slim": "~3.0",
-        "monolog/monolog": "^1.17",
+        "theorchard/monolog-cascade" : "dev-master",
         "bigc/profile": "dev-master",
         "bigc/resume": "dev-master"
     },
