@@ -4,7 +4,7 @@ namespace bigc\rest\profile;
 
 use \bigc\resume\model\Experience;
 use \bigc\resume\data\ExperienceData;
-use \bigc\rest\BaseRest;
+use \app\BaseRest;
 
 class ExpRest extends BaseRest
 {
@@ -18,6 +18,25 @@ class ExpRest extends BaseRest
 
         $this->model = new Experience;
     }
+
+    public function process()
+    {
+        switch($this->request->getMethod())
+        {
+            case 'GET':
+                if(empty($this->request->getAttribute('expid')))
+                    return $this->doGets();
+                else
+                    return $this->doGet();
+            case 'PUT':
+                return $this->doPut();
+            case 'DELETE':
+                return $this->doDelete();
+            case 'POST':
+                return $this->doPost();
+        }
+    }
+
     public function doGets()
     {
         $datas = $this->model->getDatas($this->request->getAttribute('uid'));

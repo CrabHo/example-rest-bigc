@@ -23,7 +23,8 @@
     },
     "autoload": {
         "psr-4" : {
-            "bigc\\rest\\": "src/rest"
+            "bigc\\rest\\": "src/rest",
+            "app\\": "src/app"
         }
     }
 }

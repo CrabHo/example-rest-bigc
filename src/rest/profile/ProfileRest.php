@@ -4,7 +4,7 @@ namespace bigc\rest\profile;
 
 use \bigc\profile\model\Profile;
 use \bigc\profile\data\ProfileData;
-use \bigc\rest\BaseRest;
+use \app\BaseRest;
 
 class ProfileRest extends BaseRest
 {
@@ -18,6 +18,26 @@ class ProfileRest extends BaseRest
 
         $this->model = new Profile;
     }
+
+    public function process()
+    {
+        switch($this->request->getMethod())
+        {
+            case 'GET':
+                if(empty($this->request->getAttribute('id')))
+                    return $this->doGets();
+                else
+                    return $this->doGet();
+            case 'PUT':
+                return $this->doPut();
+            case 'DELETE':
+                return $this->doDelete();
+            case 'POST':
+                return $this->doPost();
+        }
+    }
+
+
     public function doGets()
     {
         $userDatas = $this->model->getDatas();

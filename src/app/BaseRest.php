@@ -1,5 +1,5 @@
 <?php
-namespace bigc\rest;
+namespace app;
 
 class BaseRest {
     private static $notFoundApi = ['message' => 'API not found'];
@@ -13,24 +13,10 @@ class BaseRest {
         $this->request = $req;
         $this->response = $res;
     }
-    public function doPost()
+
+    protected function process()
     {
         return $this->doSend(self::$notFoundApi, 404);
-    }
-
-    public function doGet()
-    {
-        return $this->doSend( self::$notFoundApi, 404);
-    }
-
-    public function doDelete()
-    {
-        return $this->doSend( self::$notFoundApi, 404);
-    }
-
-    public function doPut()
-    {
-        return $this->doSend( self::$notFoundApi, 404);
     }
 
     protected function doSend($responseData, $statusCode = 200)

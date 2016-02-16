@@ -4,7 +4,7 @@ namespace bigc\rest\profile;
 
 use \bigc\resume\model\Education;
 use \bigc\resume\data\EducationData;
-use \bigc\rest\BaseRest;
+use \app\BaseRest;
 
 class EduRest extends BaseRest
 {
@@ -18,6 +18,25 @@ class EduRest extends BaseRest
 
         $this->model = new Education;
     }
+
+    public function process()
+    {
+        switch($this->request->getMethod())
+        {
+            case 'GET':
+                if(empty($this->request->getAttribute('eduid')))
+                    return $this->doGets();
+                else
+                    return $this->doGet();
+            case 'PUT':
+                return $this->doPut();
+            case 'DELETE':
+                return $this->doDelete();
+            case 'POST':
+                return $this->doPost();
+        }
+    }
+
     public function doGets()
     {
         $datas = $this->model->getDatas($this->request->getAttribute('uid'));

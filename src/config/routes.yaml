@@ -1,0 +1,24 @@
+Profile1: 
+    path: /profile
+    method: [GET, POST]
+    class: \bigc\rest\profile\ProfileRest
+Profile2:
+    path: /profile/{id:[0-9]+}
+    method: [GET, PUT, DELETE]
+    class: \bigc\rest\profile\ProfileRest
+Edu1: 
+    path: /profile/{uid:[0-9]+}/edu
+    method: [GET, POST]
+    class: \bigc\rest\profile\EduRest
+Edu2:
+    path: /profile/{uid:[0-9]+}/edu/{eduid:[0-9]+}
+    method: [GET, PUT, DELETE]
+    class: \bigc\rest\profile\EduRest
+Exp1:
+    path: /profile/{uid:[0-9]+}/exp
+    method: [GET, POST]
+    class: \bigc\rest\profile\ExpRest
+Exp2:
+    path: /profile/{uid:[0-9]+}/exp/{expid:[0-9]+}
+    method: [GET, PUT, DELETE]
+    class: \bigc\rest\profile\ExpRest
