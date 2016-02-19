@@ -1,8 +1,8 @@
 <?php
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-$routeConfig = '../src/config/routes.yaml';
-$logConfig = '../src/config/logs.yaml';
+$routeConfig = __DIR__ . '/../src/config/routes.yaml';
+$logConfig = __DIR__ . '/../src/config/logs.yaml';
 
 $app = new \app\RestFulWeb;
 

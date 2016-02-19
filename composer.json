@@ -21,10 +21,29 @@
         "bigc/profile": "dev-master",
         "bigc/resume": "dev-master"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5",
+        "squizlabs/php_codesniffer": "^2.5"
+    },
     "autoload": {
         "psr-4" : {
             "bigc\\rest\\": "src/rest",
             "app\\": "src/app"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "bigc\\rest\\": "tests/rest"
+        }
+    },
+    "scripts": {
+        "test": [
+            "rm -rf ./build/logs",
+            "mkdir -p ./build/logs",
+            "@phpunit"
+        ],
+        "phpunit": "php vendor/bin/phpunit -c ./build/phpunit.xml",
+        "phpcs": "php vendor/bin/phpcs --standard=PSR2 -p ./src",
+        "phpcs-ci": "php vendor/bin/phpcs --standard=PSR2 --report=checkstyle --report-file=./build/logs/checkstyle.xml ./src"
     }
 }

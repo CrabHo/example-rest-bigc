@@ -21,6 +21,11 @@ class RestFulWeb
         $this->slimApp = new SlimApp($this->slimContainer);
     }
     
+    public function getApp()
+    {
+        return $this->slimApp;
+    }
+    
     public function setLogFromFile($file)
     {
         Cascade::fileConfig($file);
@@ -74,9 +79,7 @@ class RestFulWeb
                         'message'  =>  get_class($exception) . ':' . $exception->getMessage()
                     ]
                 ];
-                return $c['response']->withStatus(500)
-                    ->withHeader('Content-Type', 'application/json')
-                    ->write(json_encode($res));
+                return $c['response']->withJson($res, 500);
             };
         };
     }
@@ -93,9 +96,7 @@ class RestFulWeb
                         'message'  =>  'Method not found'
                     ]
                 ];
-                return $c['response']->withStatus(404)
-                    ->withHeader('Content-Type', 'application/json')
-                    ->write(json_encode($res));
+                return $c['response']->withJson($res, 404);
             };
         };
     }
@@ -112,10 +113,10 @@ class RestFulWeb
                         'message'  =>  'Method not found'
                     ]
                 ];
-                return $c['response']->withStatus(405)
+                
+                return $c['response']
                     ->withHeader('Allow', implode(', ', $methods))
-                    ->withHeader('Content-Type', 'application/json')
-                    ->write(json_encode($res));
+                    ->withJson($res, 405);
             };
         };
     }

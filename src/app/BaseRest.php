@@ -21,8 +21,6 @@ class BaseRest {
 
     protected function doSend($responseData, $statusCode = 200)
     {
-        return $this->response->withStatus($statusCode)
-            ->withHeader('Content-Type', self::$contentType)
-            ->write(json_encode($responseData));
+        return $this->response->withJson($responseData, $statusCode);
     }
 }

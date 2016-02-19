@@ -1,0 +1,16 @@
+formatters:
+    dashed:
+        class: Monolog\Formatter\LineFormatter
+        format: "%datetime%-%channel%.%level_name% - %message%\n"
+handlers:
+    console:
+        class: Monolog\Handler\StreamHandler
+        level: DEBUG
+        formatter: dashed
+        processors: [web_processor]
+        stream: /dev/null
+processors:
+    web_processor:
+        class: Monolog\Processor\WebProcessor
+default:
+    handlers: [console]
