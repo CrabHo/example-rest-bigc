@@ -4,6 +4,7 @@ namespace app;
 use Symfony\Component\Yaml\Yaml as YamlParser;
 use Slim\App as SlimApp;
 use Slim\Container as SlimContainer;
+use Cascade\Cascade;
 
 class RestFulWeb
 {
@@ -19,7 +20,17 @@ class RestFulWeb
         
         $this->slimApp = new SlimApp($this->slimContainer);
     }
-
+    
+    public function getApp()
+    {
+        return $this->slimApp;
+    }
+    
+    public function setLogFromFile($file)
+    {
+        Cascade::fileConfig($file);
+    }
+    
     public function setRouteFromFile($file)
     {
         $routeConfig = YamlParser::parse(file_get_contents($file));
@@ -61,15 +72,14 @@ class RestFulWeb
         $c = $this->slimContainer;
         $c['errorHandler'] = function ($c) {
             return function ($request, $response, $exception) use ($c) {
+                Cascade::getLogger('app')->error("Got exception, $exception");
                 $res = ['error' =>
                     [
                         'code'     =>  $exception->getCode(),
                         'message'  =>  get_class($exception) . ':' . $exception->getMessage()
                     ]
                 ];
-                return $c['response']->withStatus(500)
-                    ->withHeader('Content-Type', 'application/json')
-                    ->write(json_encode($res));
+                return $c['response']->withJson($res, 500);
             };
         };
     }
@@ -79,15 +89,14 @@ class RestFulWeb
         $c = $this->slimContainer;
         $c['notFoundHandler'] = function ($c) {
             return function ($request, $response) use ($c) {
+                Cascade::getLogger('app')->error("Url not found " . $request->getUri());
                 $res = ['error' =>
                     [
                         'code'     =>  -32601,
                         'message'  =>  'Method not found'
                     ]
                 ];
-                return $c['response']->withStatus(404)
-                    ->withHeader('Content-Type', 'application/json')
-                    ->write(json_encode($res));
+                return $c['response']->withJson($res, 404);
             };
         };
     }
@@ -97,16 +106,17 @@ class RestFulWeb
         $c = $this->slimContainer;
         $c['notAllowedHandler'] = function ($c) {
             return function ($request, $response, $methods) use ($c) {
+                Cascade::getLogger('app')->error("Method not allow. $methods, " . $request->getUri());
                 $res = ['error' =>
                     [
                         'code'     =>  -32601,
                         'message'  =>  'Method not found'
                     ]
                 ];
-                return $c['response']->withStatus(405)
+                
+                return $c['response']
                     ->withHeader('Allow', implode(', ', $methods))
-                    ->withHeader('Content-Type', 'application/json')
-                    ->write(json_encode($res));
+                    ->withJson($res, 405);
             };
         };
     }
