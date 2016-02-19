@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites>
-  <testsuite name="Resume Test Suite" tests="1" assertions="1" failures="0" errors="0" time="0.020469">
-    <testsuite name="bigc\rest\profile\EduRestTest" file="/home/crab/git/example-rest-bigc/tests/rest/profile/EduRestTest.php" tests="1" assertions="1" failures="0" errors="0" time="0.020469">
-      <testcase name="testGetEdus" class="bigc\rest\profile\EduRestTest" file="/home/crab/git/example-rest-bigc/tests/rest/profile/EduRestTest.php" line="9" assertions="1" time="0.020469"/>
-    </testsuite>
-  </testsuite>
-</testsuites>

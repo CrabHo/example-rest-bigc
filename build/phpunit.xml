@@ -16,7 +16,7 @@
          bootstrap="../vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="Resume Test Suite">
+        <testsuite name="bigc Test Suite">
             <directory>../tests/</directory>
         </testsuite>
     </testsuites>
