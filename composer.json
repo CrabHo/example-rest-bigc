@@ -33,7 +33,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "bigc\\rest\\": "tests/rest"
+            "bigc\\rest\\": "tests/rest",
+            "app\\": "tests/app"
         }
     },
     "scripts": {

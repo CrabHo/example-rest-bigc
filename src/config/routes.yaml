@@ -22,3 +22,7 @@ Exp2:
     path: /profile/{uid:[0-9]+}/exp/{expid:[0-9]+}
     method: [GET, PUT, DELETE]
     class: \bigc\rest\profile\ExpRest
+Version:
+    path: /version
+    method: [GET]
+    class: \app\Version
